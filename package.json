@@ -10,7 +10,7 @@
     "convertor"
   ],
   "version": "0.0.1",
-  "preferGlobal": true,
+  "preferGlobal": false,
   "config": {
     "publishtest": false
   },
@@ -26,8 +26,6 @@
     "coffee": "./coffee",
     "bin": "./bin"
   },
-  "main": "./lib/c2j.js",
-  "bin": "./bin/coffee2json.js",
   "dependencies": {
     "validate-json":"1.0.0",
     "coffee-script":">=1.2.0",

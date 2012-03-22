@@ -1,3 +1,4 @@
+#!/usr/bin/node
 (function() {
   var fs, lib, path;
 

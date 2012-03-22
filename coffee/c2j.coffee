@@ -2,6 +2,7 @@ fs = require 'fs'
 argv = require('optimist').argv
 {print} = require 'sys'
 {spawn} = require 'child_process'
+path = require 'path'
 
 exports.run = ->
   t = spawn 'coffee', ['-o', argv.o, '-cwbp' , argv.i]
@@ -16,9 +17,11 @@ coffee2json = (data)->
 
 parse = (d, out) ->
   temp = argv.o + '/' + process.pid
-  replace = '../node_modules/.bin/replace'
   fs.writeFileSync temp, d
-  primary = spawn 'lib/parse.sh', [temp, out]
+  p = path.dirname fs.realpathSync(__filename)
+  primary = spawn  p + '/parse.sh', [temp, out]
+  primary.stdout.on 'data', (d) ->
+    console.log do d.toString
   primary.on 'exit', (code) ->
     console.log 'Wrote ' + out
 
