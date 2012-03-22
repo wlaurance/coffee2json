@@ -29,6 +29,8 @@
   "main": "./lib/c2j.js",
   "bin": "./bin/coffee2json.js",
   "dependencies": {
-    "validate-json":"1.0.0"
+    "validate-json":"1.0.0",
+    "coffee-script":">=1.2.0",
+    "optimist":">=0.3.1"
   }
 }
