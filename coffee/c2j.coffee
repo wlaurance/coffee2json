@@ -9,13 +9,16 @@ exports.run = ->
     coffee2json d
 
 coffee2json = (data)->
-  clean = parse data
-  filename = argv.o.split('.')[0] + '.json'
-  fs.writeFile argv.o + '/' + filename, clean, (err)->
-    if err
-      throw err
-    console.log 'it saved'
+  file = argv.i.split('/')
+  filename = file[file.length-1].split('.')[0]
+  filename = argv.o + '/' + filename + '.json'
+  parse data, filename
 
+parse = (d, out) ->
+  temp = argv.o + '/' + process.pid
+  replace = '../node_modules/.bin/replace'
+  fs.writeFileSync temp, d
+  primary = spawn 'lib/parse.sh', [temp, out]
+  primary.on 'exit', (code) ->
+    console.log 'Wrote ' + out
 
-parse = (d) ->
-  console.log d.toString()
