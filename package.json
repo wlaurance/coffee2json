@@ -10,21 +10,12 @@
     "convertor"
   ],
   "version": "0.0.1",
-  "preferGlobal": false,
-  "config": {
-    "publishtest": false
-  },
+  "preferGlobal":true,
   "homepage": "https://github.com/wlaurance/coffee2json",
   "author": "Will S. Laurance <w.laurance@gmail.com> (http://wlaurance.com)",
   "repository": {
     "type": "git",
     "url": "https://github.com/wlaurance/coffee2json"
-  },
-  "directories":{
-    "doc": "./doc",
-    "lib": "./man",
-    "coffee": "./coffee",
-    "bin": "./bin"
   },
   "dependencies": {
     "validate-json":"1.0.0",
