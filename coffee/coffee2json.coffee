@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 fs = require 'fs'
 argv = require('optimist').argv
 {print} = require 'sys'
