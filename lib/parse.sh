@@ -7,3 +7,4 @@ replace '(\(function\(\) {)' ' ' $1 >> /dev/null
 replace '(\({)' '{' $1 >> /dev/null
 cat $1 > $2
 rm $1
+jsonlint $2 1>&2

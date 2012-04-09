@@ -25,6 +25,17 @@ parse = (d, base, out) ->
   p = path.dirname fs.realpathSync(__filename)
   primary = spawn  p + '/parse.sh', [temp, out]
   primary.on 'exit', (code) ->
-    time = (new Date).toString().split(' ')[4]
-    console.log  time + ' - compiled ' + out
+    if code is 0
+      time = (new Date).toString().split(' ')[4]
+      console.log  time + ' - compiled ' + out
+    else
+      console.log 'ERROR ' + out
+
+  primary.stderr.on 'data', (d) ->
+    try 
+      JSON.parse do d.toString 
+    catch e
+      jsonlint = spawn 'jsonlint', [out]
+      jsonlint.stdout.on 'data', (f)->
+        console.log f.toString()
 
