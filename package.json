@@ -9,7 +9,7 @@
     "json",
     "convertor"
   ],
-  "version": "0.0.3",
+  "version": "0.0.4",
   "homepage": "https://github.com/wlaurance/coffee2json",
   "author": "Will S. Laurance <w.laurance@gmail.com> (http://wlaurance.com)",
   "repository": {
