@@ -1,11 +1,18 @@
 #!/usr/bin/env node
 fs = require 'fs'
 argv = require('optimist').argv
-{print} = require 'sys'
+{print} = require 'util'
 {spawn} = require 'child_process'
 path = require 'path'
 
 exports.run = ->
+  if argv.h?
+    do help
+  else if argv.v
+    do version
+  else if not argv.o? || not argv.i?
+    do help
+  else
   t = spawn 'coffee', ['-o', argv.o, '-cwbp' , argv.i]
   t.stdout.on 'data', (d) ->
     coffee2json d
@@ -39,3 +46,14 @@ parse = (d, base, out) ->
       jsonlint.stdout.on 'data', (f)->
         console.log f.toString()
 
+help = ->
+  console.log 'coffee2json -i inputFile -o outputdirectory'
+
+version = ->
+  fs.realpath __filename, (err, resolvedpath) ->
+    throw err if err
+    cd = path.dirname resolvedpath
+    fs.readFile cd + '/../package.json', (err, data) ->
+      throw err if err
+      info = JSON.parse data
+      console.log 'v' + info.version
