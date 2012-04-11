@@ -13,9 +13,9 @@ exports.run = ->
   else if not argv.o? || not argv.i?
     do help
   else
-  t = spawn 'coffee', ['-o', argv.o, '-cwbp' , argv.i]
-  t.stdout.on 'data', (d) ->
-    coffee2json d
+    t = spawn 'coffee', ['-o', argv.o, '-cwbp' , argv.i]
+    t.stdout.on 'data', (d) ->
+      coffee2json d
 
 coffee2json = (data)->
   file = argv.i.split('/')
