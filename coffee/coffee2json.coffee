@@ -4,6 +4,14 @@ argv = require('optimist').argv
 {print} = require 'util'
 {spawn} = require 'child_process'
 path = require 'path'
+{sync} = require 'which'
+
+bins = ['coffee', 'jsonlint']
+for b in bins
+  try
+    sync b
+  catch e
+    throw e
 
 exports.run = ->
   if argv.h?
